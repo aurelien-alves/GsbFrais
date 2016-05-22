@@ -1,0 +1,49 @@
+{% extends 'ALGsbBundle::base.html.twig' %}
+
+
+{% block head %}
+    {{ parent() }}
+    <title>GSB | Accueil</title>
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8  col-lg-offset-2">
+                <div class="page-header">
+                    {% if visiteur is defined %}
+                        <center><h2>Bienvenue {{visiteur.prenom}} {{visiteur.nom}}</h2></center>
+                        {% elseif comptable is defined %}
+                        <center><h2>Bienvenue {{comptable.prenom}} {{comptable.nom}}</h2></center>
+                        {% endif %}
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3">
+                        <center>
+                            {% if visiteur is defined %}
+                                <a class="btn btn-info" href="{{path('al_gsb_saisir_frais')}}" role="button">Gérer vos frais</a>
+                                <a class="btn btn-info" href="{{path('al_gsb_consulter_frais')}}" role="button">suivre vos frais</a>
+                            {% elseif comptable is defined %}
+                                <a class="btn btn-info" href="{{path('al_gsb_valider_frais')}}" role="button">Valider les frais</a>
+                                <a class="btn btn-info" href="{{path('al_gsb_suivre_paiement_frais')}}" role="button">suivre le paiement des frais</a>
+                            {% endif %}
+                        </center>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3">
+                        <center><a class="btn btn-info" href="{{path('al_gsb_deconnexion')}}" role="button">Deconnexion</a></center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

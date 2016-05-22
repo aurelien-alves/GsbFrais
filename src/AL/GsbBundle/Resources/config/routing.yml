@@ -1,0 +1,71 @@
+al_gsb_connexion:
+    path:    /
+    defaults: { _controller: ALGsbBundle:Connexion:index }
+    
+al_gsb_accueil:
+    path:   /accueil/
+    defaults: { _controller: ALGsbBundle:Accueil:index } 
+
+    
+al_gsb_saisir_frais:
+    path:   /saisirFrais/
+    defaults: { _controller: ALGsbBundle:SaisirFrais:index }
+
+al_gsb_saisir_hors_frais:
+    path:   /saisirHorsFrais/{id_ficheFrais}
+    defaults: { _controller: ALGsbBundle:SaisirFrais:saisirHorsFrais }
+    
+al_gsb_supprimer_hors_frais:
+    path:   /supprimerHorsFrais/{id_ligneFraisHorsForfait}
+    defaults: { _controller: ALGsbBundle:SaisirFrais:supprimerHorsFrais }
+
+al_gsb_creer_frais:
+    path:   /creerFrais/
+    defaults: { _controller: ALGsbBundle:SaisirFrais:creerFrais }
+    
+al_gsb_consulter_frais:
+    path:   /consulterFrais
+    defaults: { _controller: ALGsbBundle:ConsulterFrais:index }
+    
+al_gsb_details_frais:
+    path:   /detailsFrais/{id_ficheFrais}
+    defaults: { _controller: ALGsbBundle:ConsulterFrais:detailsFicheFrais }
+    
+ 
+ 
+al_gsb_suivre_paiement_frais:
+    path:   /suivrePaiementFrais/
+    defaults: { _controller: ALGsbBundle:SuivrePaiementFicheFrais:index }
+
+al_gsb_valider_frais:
+    path:   /validerFrais/
+    defaults: { _controller: ALGsbBundle:ValiderFrais:index }
+
+al_gsb_valider_frais_details:
+    path:   /validerFraisDetails/{id_ficheFrais}
+    defaults: { _controller: ALGsbBundle:ValiderFrais:details }
+
+al_gsb_valider_frais_etat:
+    path:   /etatValider/{id_ficheFrais}
+    defaults: { _controller: ALGsbBundle:ValiderFrais:etatValider }
+
+al_gsb_comptable_reporter_hors_forfait:
+    path:   /reporterHorsForfait/{id_horsForfait}/{id_ficheFrais}
+    defaults: { _controller: ALGsbBundle:ValiderFrais:reporterHorsForfait }
+
+al_gsb_comptable_supprimer_hors_forfait:
+    path:   /invaliderHorsForfait/{id_horsForfait}/{id_ficheFrais}
+    defaults: { _controller: ALGsbBundle:ValiderFrais:supprimerHorsForfait }
+
+al_gsb_comptable_modifier_etat_forfait:
+    path:   /modifierEtatFicheFrais/{id_ficheFrais}
+    defaults: { _controller: ALGsbBundle:SuivrePaiementFicheFrais:modifierEtatFiche }
+    
+al_gsb_comptable_details_fiche_frais:
+    path:   /detailsFraisVisiteur/{id_ficheFrais}
+    defaults: { _controller: ALGsbBundle:SuivrePaiementFicheFrais:detailsFicheFrais }
+    
+    
+al_gsb_deconnexion:
+    path:   /logout
+    defaults: { _controller: ALGsbBundle:Deconnexion:index }

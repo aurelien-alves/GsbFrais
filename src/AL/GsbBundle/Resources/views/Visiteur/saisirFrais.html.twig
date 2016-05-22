@@ -1,0 +1,80 @@
+{% extends 'ALGsbBundle::base.html.twig' %}
+
+
+{% block head %}
+    {{ parent() }}
+    <title>GSB | Saisir Frais</title>
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8  col-lg-offset-2">
+                <div class="page-header">
+                    <center><h2>Gérer vos frais </h2></center>
+                </div>
+                <ol class="breadcrumb">
+                    <li><a href="{{ path('al_gsb_deconnexion') }}">déconnexion</a></li>
+                    <li><a href="{{ path('al_gsb_accueil') }}">accueil</a></li>
+                    <li class="active">gérer vos frais</li>
+                </ol>
+            </div>
+            <div class="row">
+                <div class="col-lg-8  col-lg-offset-2">                    
+                    {% if saisir is defined %}
+                        <center>
+                            <div class="page-header">
+                                <h3>Fiche de frais pour le mois {{mois}}.</h3>
+                            </div>
+                            {{form(form)}}
+                            <hr>
+                            {% if lignesFraisHorsForfait is empty%}
+                                <div class="alert alert-warning" role="alert">
+                                    <a>Vous n'avez pas de hors forfait pour le mois en cours.</a>
+                                </div>
+                            {%else%}
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Libelle</th>
+                                            <th>Date frais</th>
+                                            <th>Montant</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for ligneFraisHorsForfait in lignesFraisHorsForfait%}
+                                            <tr>
+                                                <td>{{ligneFraisHorsForfait.libelle}}</td>
+                                                <td>{{ligneFraisHorsForfait.dateFrais |date("d/m/Y")}}</td>
+                                                <td>{{ligneFraisHorsForfait.montant}}</td>
+                                                <td><a class="btn btn-danger" href="{{path('al_gsb_supprimer_hors_frais',{'id_ligneFraisHorsForfait': ligneFraisHorsForfait.id})}}" role="button">supprimer</a></p></td>
+                                            </tr>
+                                        {% endfor%}
+                                    </tbody>
+                                </table>
+
+                            {%endif%}
+                            <p><a class="btn btn-info" href="{{path('al_gsb_saisir_hors_frais',{'id_ficheFrais': ficheFrais.id})}}" role="button">Ajouter un hors forfait</a></p>
+                        </center>
+                    {% endif %}
+                    {% if creerFiche is defined %}
+                        <center>
+                            <div class="jumbotron">
+                                <h3>Vous n'avez pas de fiche de frais en cours pour le mois {{mois}}.</h3>
+                                <hr>
+                                <p><a class="btn btn-info btn-lg" href="{{path("al_gsb_creer_frais")}}" role="button">Ouvrir la fiche</a></p>
+                            </div>
+                        </center>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
